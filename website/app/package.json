@@ -1,7 +1,7 @@
 {
   "name": "kooljs-website",
-  "homepage": "https://ji-podhead.github.io/kooljs-website",
-  "version": "0.2.0",
+  "homepage": "pamji.space",
+  "version": "1.0.0",
   "private": false,
   "dependencies": {
     "@babel/parser": "^7.26.7",
@@ -10,7 +10,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "kooljs": "file:../../kooljs/kooljs",
+    "kooljs": "file:../kooljs/kooljs",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^8.0.7",

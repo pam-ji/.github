@@ -1,25 +1,29 @@
 
 import "./App.css";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, use } from "react";
 import { Animator } from "kooljs/animator"
-import { Example as E13 } from "./examples/e13"
+import { FontAnimation, start, stop } from "./main_animation"
 import {  Header } from "./utils"
-const Animated_Components = []
 const animator = new Animator(50)
+function Font() {
+  var temp
+  useMemo(() => {
+     temp =  FontAnimation(animator)     
+    animator.init(true);
+    start()
+}, []);
+return temp
+}
 function App() {
-  const Info  = useEffect(() => {
-      const temp=E13(animator)     
-      animator.init(true);
-      return temp
-  }, []);
+ 
   return (
     <div class="App  bg-[#242d36] w-full h-full flex   items-center justify-center  " style={{ width: window.innerWidth, height: window.innerHeight }}>
-     <div class=" w-[96%]  h-[96%] flex flex-col items-center justify-center rounded-md border-4  border-[#BF8DE1] ">
+     <div class=" w-[96%]  h-[96%] flex flex-col items-center justify-center rounded-md border-4  border-[#020202] ">
       <div class=" w-full  h-[7%] " >
         <Header />
       </div>
-      <div class="flex  w-full h-[93%] bg-red-50   items-center justify-center">
-      <Info></Info>
+      <div class="flex  w-full h-[93%] bg-white   items-center justify-center">
+      <Font></Font>
         </div>
       </div>
     </div>
