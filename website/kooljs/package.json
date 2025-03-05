@@ -1,0 +1,51 @@
+{
+  "name": "kooljs",
+  "homepage": "https://github.com/ji-podhead/kooljs",
+  "version": "0.2.8",
+  "private": false,
+  "dependencies": {
+
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/user-event": "^13.5.0"
+
+  },
+  "eslintConfig": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@babel/parser": "^7.26.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "sphinx": "^0.1.2"
+  },
+  "readme": "../README.md",
+  "files": [
+    "lib",
+    "../README.md"
+  ],
+  "module": "./animator.js",
+  "type": "module",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "exports": {
+    ".": "./animator.js",
+    "./animator": "./animator.js",
+    "./worker": "./worker.js",
+    "./kooljs/worker": "./worker.js",
+    "./kooljs/worker_functions": "./worker_functions.js",
+    "./kooljs/worker_utils": "./worker_utils.js",
+    "./worker_functions": "./worker_functions.js",
+    "./worker_utils": "./worker_utils.js"
+  }
+}
