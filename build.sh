@@ -3,7 +3,7 @@ cd website/app
 bun run build
 bun run deploy
 cd ../../
-git add ./website/app/build/ --force
+git add .
 git checkout production
 git commit -m "Deploy to production"
 git push origin production
