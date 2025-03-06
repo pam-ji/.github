@@ -2,7 +2,7 @@ name: production build
 on:
   push:
     branches:
-    - build
+    - production
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -13,9 +13,22 @@ jobs:
         with:
           filters: |
             branches:
-              - build
+              - production
       - if: true
         run: |
              cd website/app
              bun run build
              bun run deploy
+      - name: Post build results to PR
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = github.context.pullRequest.number;
+            const buildResults = 'Build erfolgreich!';
+            github.issues.createComment({
+              issue_number: prNumber,
+              owner: github.context.repo.owner,
+              repo: github.context.repo.repo,
+              body: buildResults
+            });
