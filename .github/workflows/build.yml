@@ -14,7 +14,7 @@ jobs:
           filters: |
             branches:
               - build
-      - if: github.event.review.state == 'approved'
+      - if: true
         run: |
              cd website/app
              bun run build
