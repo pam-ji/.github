@@ -8,9 +8,11 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - if: true
+      - if: false
         run: |
              cd website/app
+             apt update
+             apt install 
              bun run build
              bun run deploy
       - name: Post build results to PR
