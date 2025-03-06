@@ -1,5 +1,4 @@
-import { start_animations, setMatrix, get_lerp_value, get_constant_row, set_duration, hard_reset, lambda_call, get_constant_number, reorient_duration, reorient_target, reorient_duration_by_distance, get_constant, reorient_duration_by_progress, get_group_values, is_active, set_group_orientation, start_group, reverse_group_delays, stop_animations, setLerp, update_constant } from 'kooljs/worker_functions'
-import { useRef } from 'react'
+import { get_lerp_value} from 'kooljs/worker_functions'
 const animProps = {
   animator: undefined,
   animations: undefined,
@@ -61,7 +60,7 @@ lines.map((l,i)=>{
   const reference_matrix = [lines[0],lines[1]]
   animProps.ref_const= animator.constant({
     type:"matrix",
-    value:[lines[1],lines[2],lines[2],lines[3],lines[4],lines[5],lines[6]]
+    value:lines
   })
   animProps.selected=animator.constant({
     type:"number",
@@ -80,7 +79,8 @@ lines.map((l,i)=>{
             value[i]=Math.floor(v)
             
           })
-      })
+      }),
+      animProps:animProps
     }
   })
   animProps.timeline = animator.Timeline({
@@ -88,19 +88,17 @@ lines.map((l,i)=>{
     render_interval: 40,
     length: 1,
     loop: true,
-    callback: {
-      callback: (({ time }) => {
+     callback:{
+      callback:`(({ time }) => {
         if(time==0){
-        var current=get_constant_number(`${animProps.selected.id}`)        
+        var current=this.get_constant_number(${animProps.selected.id})        
         const new_=current+1>6?0:current+1
-        debugger
-        update_constant(`${animProps.selected.id}`,"number",new_)
-       reorient_target({ index: `${animProps.animations.id}`, step: 0, direction: 1, reference: get_constant_row(`${animProps.ref_const.id}`,new_), matrix_row: 1 })
-       start_animations([`${animProps.animations.id}`])
+        this.update_constant(${animProps.selected.id},"number",new_)
+       this.reorient_target({ index: ${animProps.animations.id}, step: 0, direction: 1, reference: this.get_constant_row(${animProps.ref_const.id},new_), matrix_row: 1 })
+       this.start_animations([${animProps.animations.id}])
         console.log("new " +new_)}
-      }),
-      animProps:animProps
-    }
+
+      })`}
   })
   return (
     <div class="w-full h-full bg-slate-700 flex items-center justify-center">

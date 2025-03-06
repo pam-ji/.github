@@ -578,7 +578,15 @@ class Animator extends Worker_Utils {
                             try {
                                 this.lerp_registry.lerp_callbacks.get(index)(args);
                             }
-                            catch (err) { console.log(err) }
+                            catch (err) { console.error(`got Error calling lambda number: ${index} 
+Function: ${this.lerp_registry.lerp_callbacks.get(index)}
+args: ${JSON.stringify(args)}
+error: ${err}
+-------------
+stopping animator now!
+                                `)
+                                this.stop_animations("all");
+                            }
                         }
                     }
                     this.lerp_registry.progress[index] += 1;
