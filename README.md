@@ -9,13 +9,20 @@ after you run git pull and made your changes you can use the build.sh script in 
 ### CICD
 ```mermaid
   graph TD;
-      local--push-->p[produciton branch];
-      p--trigger--> b[gh action build];
-      b--deploy-->d1[gh pages production deployment]
+      l[local]--push-->p[produciton branch];
+ l--deploy-->d1[gh pages production deployment]
+
+ p-->m[master branch]
+
+     
       p--trigger-->pr
       pr-->a[awaiting approval]
-      d1 <--review-->a
-			a--trigger-->a2[gh action for final deployment]
+
+a-->m
+m--trigger-->a2[gh action for final deployment]
+     d1 <--review-->a
+			
 			a2-->f[final build]
-			p-->f
+			m-->f
 			f-->v[deploy to netlify]
+
