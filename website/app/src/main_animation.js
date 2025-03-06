@@ -73,14 +73,13 @@ lines.map((l,i)=>{
     delay:0,
     loop:false,
     callback:{
-      callback:(({id})=>{
-        const value = get_lerp_value(id)
+      callback:`(({id})=>{
+        console.log(${animProps.selected.id})
+        const value = this.get_lerp_value(id)
         value.map((v,i)=>{
             value[i]=Math.floor(v)
-            
           })
-      }),
-      animProps:animProps
+      })`
     }
   })
   animProps.timeline = animator.Timeline({
