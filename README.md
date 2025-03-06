@@ -2,7 +2,8 @@
 
 The Pamji Website and git landing page
 
-  
+### how to deploy 
+after you run git pull and made your changes you can use the build.sh script in the root folder which will build your changes and force commit the build folder to the production branch
   
 
 ### CICD
