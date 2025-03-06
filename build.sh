@@ -1,10 +1,9 @@
 #!/bin/bash
 cd website/app
-#bun run build
+bun run production
 cd ../../
-
 git add ./website/app/build/ --force
-git checkout build
-git commit -m "Deploy to build"
-git push origin build
+git checkout production
+git commit -m "Deploy to production"
+git push origin production
 #sed -i 's/"homepage": "https:\/\/pam-ji.github.io\/.github\/"/"homepage": "https:\/\/pamji.space"/g' package.json
