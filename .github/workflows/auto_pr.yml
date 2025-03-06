@@ -9,12 +9,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            branches:
-              - gh-pages
       - if: github.event.review.state == 'approved'
         run: |
           # Merge code into main branch

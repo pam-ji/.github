@@ -1,6 +1,7 @@
 #!/bin/bash
 cd website/app
 bun run build
+bun run deploy
 cd ../../
 git add ./website/app/build/ --force
 git checkout production
