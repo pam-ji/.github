@@ -39,10 +39,8 @@ function FontAnimation(animator) {
     "",
     "Hi and welcome,",
     "we are Pamji, a team of developers",
-    "we are from Germany and India",
     "we are currently working on a new project called kooljs",
-    "Everyone is welcome to join us",
-    "Have fun!",
+    "Have a look around and also check our git!",
   ]
   var longest=0
   lines.map((l,i)=>{
@@ -74,7 +72,6 @@ lines.map((l,i)=>{
     loop:false,
     callback:{
       callback:`(({id})=>{
-        console.log(${animProps.selected.id})
         const value = this.get_lerp_value(id)
         value.map((v,i)=>{
             value[i]=Math.floor(v)
@@ -91,11 +88,11 @@ lines.map((l,i)=>{
       callback:`(({ time }) => {
         if(time==0){
         var current=this.get_constant_number(${animProps.selected.id})        
-        const new_=current+1>6?0:current+1
+        const new_=current+1>4?0:current+1
         this.update_constant(${animProps.selected.id},"number",new_)
        this.reorient_target({ index: ${animProps.animations.id}, step: 0, direction: 1, reference: this.get_constant_row(${animProps.ref_const.id},new_), matrix_row: 1 })
        this.start_animations([${animProps.animations.id}])
-        console.log("new " +new_)}
+        }
 
       })`}
   })
