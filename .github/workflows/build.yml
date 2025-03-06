@@ -1,0 +1,21 @@
+name: production build
+on:
+  push:
+    branches:
+    - build
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            branches:
+              - build
+      - if: github.event.review.state == 'approved'
+        run: |
+             cd website/app
+             bun run build
+             bun run deploy
